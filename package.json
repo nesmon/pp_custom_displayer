@@ -1,0 +1,22 @@
+{
+  "name": "pp_custom_displayer",
+  "version": "1.0.0",
+  "description": "custom pp displayer for osu companion",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nesmon/pp_custom_displayer.git"
+  },
+  "author": "nesmon",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nesmon/pp_custom_displayer/issues"
+  },
+  "homepage": "https://github.com/nesmon/pp_custom_displayer#readme",
+  "dependencies": {
+    "net": "^1.0.2"
+  }
+}
