@@ -1,5 +1,4 @@
 function staticServ() {
-	const fs = require('fs')
 	/**
 	 * Import modules
 	 */
@@ -19,18 +18,9 @@ function staticServ() {
 	const staticTcpParser = new TcpParser(
 		json => {
 			try {
-				const title = require('./../data/static.json')
-				console.log(title.np_playing_DL)
 				let parseJson = JSON.parse(json);
-				let tostring = JSON.stringify(parseJson)
 				//console.log(parseJson)
-				fs.writeFile('./data/static.json', tostring, (err) => {
-					if (err) console.log(err);
-					console.log("Successfully Written to File.");
-				});
-
-
-				//console.log("np_all=" + parseJson.np_all);
+				console.log("np_all=" + parseJson.np_all);
 			} catch (e) {
 				console.error("Unexpected error " + e);
 			}
