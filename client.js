@@ -1,8 +1,8 @@
 const staticserv = require('./server/staticServer.js')
 const dynamicserv = require('./server/dynamicServer.js')
 const electron = require('electron')
+const eventBus = require('./module/eventBus')
 const app = electron.app
-
 const BrowserWindow = electron.BrowserWindow
 
 dynamicserv.dynamicServ()
@@ -11,9 +11,13 @@ staticserv.staticServ()
 let mainWindow;
 
 
+
 function createWindow() {
 
     mainWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true
+        },
         width: 800,
         height: 500,
         title: 'pp_displayer',
@@ -22,11 +26,14 @@ function createWindow() {
     });
 
     mainWindow.loadURL(`file://${__dirname}/src/index.html`)
-    
+
 
     mainWindow.on('closed', () => {
         mainWindow = null
     })
+
+    eventBus.subscribe('MUSIC_CHANGED',message => mainWindow.webContents.send('MUSIC_CHANGED', message))
+
 }
 
 app.on('ready', createWindow)

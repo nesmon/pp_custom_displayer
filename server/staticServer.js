@@ -1,4 +1,6 @@
 function staticServ() {
+
+	const eventBus = require('./../module/eventBus');
 	/**
 	 * Import modules
 	 */
@@ -19,8 +21,9 @@ function staticServ() {
 		json => {
 			try {
 				let parseJson = JSON.parse(json);
+				eventBus.publish("MUSIC_CHANGED", parseJson.np_all)
 				//console.log(parseJson)
-				console.log("np_all=" + parseJson.np_all);
+				//console.log("np_all=" + parseJson.np_all);
 			} catch (e) {
 				console.error("Unexpected error " + e);
 			}

@@ -1,0 +1,18 @@
+<html>
+
+<body>
+  <div id="konsole">...</div>
+  <script>
+    // Dans le processus de rendu (page web).
+    const {
+      ipcRenderer
+    } = require('electron');
+
+    ipcRenderer.on('MUSIC_CHANGED', (event, data) => {
+      // Faire changement du texte
+      //alert(data); // prints 'do something for me'
+    });
+  </script>
+</body>
+
+</html>
