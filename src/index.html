@@ -5,23 +5,10 @@
 </head>
 
 <body>
-  <div id="title">
-    <p></p>
-    <p id="title_global"></p>
-    <p></p>
-  </div>
-  <div id="Static">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </div>
+  <canvas id="canvas" width="700" height="300"></canvas>
+  <div id="title"></div>
+  <div id="pp"></div>
 
-  <br>
-  <div id="pp">...</div>
   <script>
     // Dans le processus de rendu (page web).
     const {
@@ -35,10 +22,52 @@
 
     ipcRenderer.on('MUSIC_CHANGED', (event, data) => {
       let parsJSON = JSON.parse(data)
-      document.getElementById('title_global').innerHTML = `${parsJSON.title}`;
-      document.getElementById("Static").style.backgroundImage = "url(" +
-        `https://assets.ppy.sh/beatmaps/${parsJSON.id}/covers/cover.jpg` + ")";
+      
+      staticInformation(parsJSON.id, parsJSON.title)
+
+      //   document.getElementById('title_global').innerHTML = `${parsJSON.title}`;
+      //   document.getElementById("Static").style.backgroundImage = "url(" +
+      //     `https://assets.ppy.sh/beatmaps/${parsJSON.id}/covers/cover.jpg` + ")";
     });
+
+
+
+    function staticInformation(id, title) {
+      const c = document.getElementById("canvas");
+      const ctx = c.getContext('2d');
+      let img2 = new Image();
+      img2.src = './img/tback.png'
+      let img1 = new Image();
+      img1.src = `https://assets.ppy.sh/beatmaps/${id}/covers/cover.jpg`;
+
+
+      img1.onload = function () {
+        ctx.drawImage(img1, 0, 30, 800, 250);
+        ctx.drawImage(img2, 75, 0, 550, 75);
+
+        ctx.strokeStyle = '#74037b';
+        ctx.font = '28px sans-serif';
+        ctx.textAlign = 'center';
+
+        ctx.fillText(title, canvas.width / 2, canvas.height / 6.5);
+
+      };
+    }
+
+
+
+
+    // ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+    // ctx.strokeStyle = '#74037b';
+    // ctx.font = '60px sans-serif';
+    // ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+
+    // ctx.beginPath();
+    // ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+    // ctx.closePath();
+    // ctx.clip()
   </script>
 </body>
 
