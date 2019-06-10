@@ -31,7 +31,7 @@ function createWindow() {
     mainWindow.on('closed', () => {
         mainWindow = null
     })
-
+    eventBus.subscribe('PP',message => mainWindow.webContents.send('PP', message))
     eventBus.subscribe('MUSIC_CHANGED',message => mainWindow.webContents.send('MUSIC_CHANGED', message))
 
 }

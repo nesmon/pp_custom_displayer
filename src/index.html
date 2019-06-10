@@ -1,16 +1,43 @@
 <html>
 
+<head>
+  <link rel="stylesheet" href="./style/style.css">
+</head>
+
 <body>
-  <div id="konsole">...</div>
+  <div id="title">
+    <p></p>
+    <p id="title_global"></p>
+    <p></p>
+  </div>
+  <div id="Static">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+
+  <br>
+  <div id="pp">...</div>
   <script>
     // Dans le processus de rendu (page web).
     const {
       ipcRenderer
     } = require('electron');
 
+    ipcRenderer.on('PP', (event, data) => {
+      let tojson = JSON.parse(data)
+      document.getElementById('pp').innerHTML = `${tojson.livepp_current_pp}`;
+    });
+
     ipcRenderer.on('MUSIC_CHANGED', (event, data) => {
-      // Faire changement du texte
-      //alert(data); // prints 'do something for me'
+      let parsJSON = JSON.parse(data)
+      document.getElementById('title_global').innerHTML = `${parsJSON.title}`;
+      document.getElementById("Static").style.backgroundImage = "url(" +
+        `https://assets.ppy.sh/beatmaps/${parsJSON.id}/covers/cover.jpg` + ")";
     });
   </script>
 </body>

@@ -1,4 +1,6 @@
 function dynamicServ() {
+
+	const eventBus = require('./../module/eventBus');
 	/**
 	 * Import modules
 	 */
@@ -17,10 +19,10 @@ function dynamicServ() {
 	 **/
 	const dynamicTcpParser = new TcpParser(
 		json => {
-			try {
-				;
+			try {				
 				let parseJson = JSON.parse(json);
-				console.log("livepp_current_pp=" + parseJson.livepp_current_pp);
+				let stringjson = JSON.stringify(parseJson)
+				eventBus.publish("PP", stringjson)
 			} catch (e) {
 				console.error("Unexpected error " + e);
 			}

@@ -21,7 +21,8 @@ function staticServ() {
 		json => {
 			try {
 				let parseJson = JSON.parse(json);
-				eventBus.publish("MUSIC_CHANGED", parseJson.np_all)
+				let stringjson = JSON.stringify(parseJson)
+				eventBus.publish("MUSIC_CHANGED", stringjson)
 				//console.log(parseJson)
 				//console.log("np_all=" + parseJson.np_all);
 			} catch (e) {
