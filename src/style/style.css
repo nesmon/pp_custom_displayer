@@ -13,3 +13,27 @@ p#title_global {
     background-color: grey;
     border-radius: 10px;
 } */
+div.viewer {
+    height: 250px;
+    width: 750px;
+}
+
+img.background {
+    position: relative;
+    width: 100%;
+}
+
+p.title{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute; 
+    top: 10px;
+}
+
+/* 
+
+Fix center texte and made border radius not take all widht of the img
+Juste take the size of the text
+
+*/
