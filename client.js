@@ -23,6 +23,8 @@ function createWindow() {
         title: 'pp_displayer',
         maximized: false,
         center: true,
+        frame: false,
+        transparent: true
     });
 
     mainWindow.loadURL(`file://${__dirname}/src/index.html`)
@@ -31,8 +33,8 @@ function createWindow() {
     mainWindow.on('closed', () => {
         mainWindow = null
     })
-    eventBus.subscribe('PP',message => mainWindow.webContents.send('PP', message))
-    eventBus.subscribe('MUSIC_CHANGED',message => mainWindow.webContents.send('MUSIC_CHANGED', message))
+    eventBus.subscribe('PP', message => mainWindow.webContents.send('PP', message))
+    eventBus.subscribe('MUSIC_CHANGED', message => mainWindow.webContents.send('MUSIC_CHANGED', message))
 
 }
 
